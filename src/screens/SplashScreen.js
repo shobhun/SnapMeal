@@ -1,6 +1,5 @@
 import { StyleSheet, Image, ImageBackground, Text } from 'react-native';
-import { getDimensions } from '../utils/helpers';
-import { STRINGS, FONTS } from '../constants';
+import { STRINGS, FONTS, DIMENSIONS } from '../constants';
 
 const SplashScreen = () => {
   return (
@@ -23,8 +22,8 @@ export default SplashScreen;
 const styles = StyleSheet.create({
   containerImage: {
     flex: 1,
-    height: getDimensions().height,
-    width: getDimensions().width,
+    height: DIMENSIONS.screenHeight,
+    width: DIMENSIONS.screenWidth,
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
