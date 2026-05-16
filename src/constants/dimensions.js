@@ -41,6 +41,7 @@ export const DIMENSIONS = {
   shadowOpacity: 0.1,
 
   //Letter Spacing
+  minLetterSpacing: 1,
   letterSpacing: 3,
 
   // Font Sizes (from your design spec)
@@ -48,6 +49,7 @@ export const DIMENSIONS = {
   fontDisplay: 32, // display
   fontH1: 24, // h1
   fontH2: 20, // h2
+  fontBodyXlg: 18, // body-xlg
   fontBodyLg: 16, // body-lg
   fontBodyMd: 14, // body-md
   fontLabelMd: 12, // label-md

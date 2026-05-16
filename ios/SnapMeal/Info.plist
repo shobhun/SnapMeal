@@ -72,6 +72,9 @@
 		<string>PlusJakartaSans-ExtraBold.ttf</string>
 		<string>PlusJakartaSans-Italic.ttf</string>
 		<string>PlusJakartaSans-BoldItalic.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Ionicons.ttf</string>
 	</array>
 </dict>
 </plist>
