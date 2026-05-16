@@ -25,7 +25,12 @@ const LoginScreen = () => {
         <View style={styles.emailPasswordContainer}>
           <Text style={styles.emailText}>{STRINGS.login.email}</Text>
           <View style={styles.emailInputContainer}>
-            <Icon name="email-outline" size={24} color={COLORS.secondary} />
+            <Icon
+              style={styles.icon}
+              name="email-outline"
+              size={24}
+              color={COLORS.secondary}
+            />
             <TextInput
               placeholder="Enter your Email id"
               style={styles.emailInput}
@@ -41,12 +46,22 @@ const LoginScreen = () => {
             </Text>
           </View>
           <View style={styles.passwordInputContainer}>
-            <Icon name="lock-outline" size={24} color={COLORS.secondary} />
+            <Icon
+              style={styles.icon}
+              name="lock-outline"
+              size={24}
+              color={COLORS.secondary}
+            />
             <TextInput
               placeholder="••••••••"
               placeholderTextColor={COLORS.secondaryFixedDim}
             />
-            <Icon name="eye-outline" size={24} color={COLORS.secondary} />
+            <Icon
+              style={styles.icon}
+              name="eye-outline"
+              size={24}
+              color={COLORS.secondary}
+            />
           </View>
         </View>
         <Pressable style={styles.signBtn}>
@@ -123,10 +138,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: COLORS.surfaceContainerLow,
     borderRadius: 10,
+    alignItems: 'center',
+  },
+  icon: {
+    marginLeft: 10,
   },
   emailInput: {
+    flex: 1,
     fontSize: DIMENSIONS.fontBodyXlg,
     fontFamily: FONTS.medium,
+    marginHorizontal: DIMENSIONS.sm,
   },
   passwordView: {
     width: '100%',
@@ -153,8 +174,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: COLORS.surfaceContainerLow,
     borderRadius: 10,
+    alignItems: 'center',
   },
   passwordInput: {
+    flex: 1,
     fontFamily: FONTS.medium,
   },
   signBtn: {
