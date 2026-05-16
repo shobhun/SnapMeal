@@ -1,7 +1,18 @@
 import { StyleSheet, Image, ImageBackground, Text } from 'react-native';
 import { STRINGS, FONTS, DIMENSIONS } from '../constants';
+import { useEffect } from 'react';
 
 const SplashScreen = () => {
+  useEffect(() => {
+    // Start Interval
+    const interval = setInterval(() => {
+      console.log('Hi');
+    }, 1000);
+
+    // Clear Interval
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <ImageBackground
       style={styles.containerImage}
@@ -35,14 +46,14 @@ const styles = StyleSheet.create({
   appnameText: {
     fontFamily: FONTS.bold,
     fontWeight: 'bold',
-    fontSize: 42,
+    fontSize: DIMENSIONS.fontMain,
     color: '#FFFFFF',
   },
   appmotoText: {
     fontFamily: FONTS.bold,
-    fontSize: 21,
+    fontSize: DIMENSIONS.fontH2,
     color: '#FFFFFF',
-    marginTop: 5,
-    letterSpacing: 3,
+    marginTop: DIMENSIONS.base,
+    letterSpacing: DIMENSIONS.letterSpacing,
   },
 });

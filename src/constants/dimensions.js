@@ -39,4 +39,16 @@ export const DIMENSIONS = {
   shadowBlur: 24,
   shadowOffsetY: 10,
   shadowOpacity: 0.1,
+
+  //Letter Spacing
+  letterSpacing: 3,
+
+  // Font Sizes (from your design spec)
+  fontMain: 42,
+  fontDisplay: 32, // display
+  fontH1: 24, // h1
+  fontH2: 20, // h2
+  fontBodyLg: 16, // body-lg
+  fontBodyMd: 14, // body-md
+  fontLabelMd: 12, // label-md
 };
