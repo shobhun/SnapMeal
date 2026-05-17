@@ -49,7 +49,7 @@ const LoginScreen = () => {
             <Icon
               style={styles.icon}
               name="lock-outline"
-              size={24}
+              size={DIMENSIONS.iconSize}
               color={COLORS.secondary}
             />
             <TextInput
@@ -61,7 +61,7 @@ const LoginScreen = () => {
             <Icon
               style={styles.iconEye}
               name="eye-outline"
-              size={24}
+              size={DIMENSIONS.iconSize}
               color={COLORS.secondary}
             />
           </View>
@@ -75,7 +75,11 @@ const LoginScreen = () => {
           <View style={styles.line} />
         </View>
         <Pressable style={styles.btnGoogle}>
-          <Icon name="google" size={24} color={COLORS.secondary} />
+          <Icon
+            name="google"
+            size={DIMENSIONS.iconSize}
+            color={COLORS.secondary}
+          />
           <Text style={styles.googleText}>{STRINGS.login.google}</Text>
         </Pressable>
         <Text style={styles.continueText}>{STRINGS.login.continueAsGuest}</Text>
@@ -133,17 +137,17 @@ const styles = StyleSheet.create({
     color: COLORS.onSurfaceVariant,
   },
   emailInputContainer: {
-    height: 60,
+    height: DIMENSIONS.defaultHeight,
     width: '100%',
     borderWidth: 1,
     borderColor: COLORS.secondaryContainer,
     flexDirection: 'row',
     backgroundColor: COLORS.surfaceContainerLow,
-    borderRadius: 10,
+    borderRadius: DIMENSIONS.radiusInput,
     alignItems: 'center',
   },
   icon: {
-    marginLeft: 10,
+    marginLeft: DIMENSIONS.m,
   },
   emailInput: {
     flex: 1,
@@ -169,13 +173,13 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   passwordInputContainer: {
-    height: 60,
+    height: DIMENSIONS.defaultHeight,
     width: '100%',
     borderWidth: 1,
     borderColor: COLORS.secondaryContainer,
     flexDirection: 'row',
     backgroundColor: COLORS.surfaceContainerLow,
-    borderRadius: 10,
+    borderRadius: DIMENSIONS.radiusInput,
     alignItems: 'center',
   },
   passwordInput: {
@@ -184,13 +188,13 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.medium,
   },
   iconEye: {
-    marginHorizontal: 10,
+    marginHorizontal: DIMENSIONS.m,
   },
   signBtn: {
-    height: 60,
+    height: DIMENSIONS.defaultHeight,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: DIMENSIONS.radiusInput,
     backgroundColor: COLORS.primary,
     marginVertical: DIMENSIONS.xl,
   },
@@ -218,10 +222,10 @@ const styles = StyleSheet.create({
   },
   btnGoogle: {
     flexDirection: 'row',
-    height: 60,
+    height: DIMENSIONS.defaultHeight,
     width: '100%',
     backgroundColor: COLORS.onPrimary,
-    borderRadius: 10,
+    borderRadius: DIMENSIONS.radiusInput,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: DIMENSIONS.xl,

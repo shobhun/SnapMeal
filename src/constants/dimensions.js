@@ -12,10 +12,13 @@ export const DIMENSIONS = {
   windowWidth: windowWidth,
   windowHeight: windowHeight,
 
+  defaultHeight: 60,
+
   // Spacing (4px baseline grid)
   base: 4,
   xs: 4,
   sm: 8,
+  m: 10,
   md: 16,
   lg: 24,
   xl: 32,
@@ -26,6 +29,7 @@ export const DIMENSIONS = {
   // Border Radius (Squircle-like shape language)
   radiusSm: 4,
   radiusDefault: 8,
+  radiusInput: 10,
   radiusMd: 12,
   radiusLg: 16,
   radiusXl: 24,
@@ -53,4 +57,7 @@ export const DIMENSIONS = {
   fontBodyLg: 16, // body-lg
   fontBodyMd: 14, // body-md
   fontLabelMd: 12, // label-md
+
+  // icon size
+  iconSize: 24,
 };
