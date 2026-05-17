@@ -1,12 +1,15 @@
 import { StyleSheet, Image, ImageBackground, Text } from 'react-native';
 import { STRINGS, FONTS, DIMENSIONS } from '../constants';
 import { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const SplashScreen = () => {
+  const navigation = useNavigation();
+
   useEffect(() => {
     // Start Interval
     const interval = setInterval(() => {
-      console.log('Hi');
+      navigation.replace('Login');
     }, 1000);
 
     // Clear Interval
