@@ -32,7 +32,7 @@ const LoginScreen = () => {
               color={COLORS.secondary}
             />
             <TextInput
-              placeholder="Enter your Email id"
+              placeholder={STRINGS.login.emailPlaceholder}
               style={styles.emailInput}
               placeholderTextColor={COLORS.secondaryFixedDim}
             />
@@ -53,11 +53,13 @@ const LoginScreen = () => {
               color={COLORS.secondary}
             />
             <TextInput
-              placeholder="••••••••"
+              style={styles.passwordInput}
+              secureTextEntry
+              placeholder={STRINGS.login.passwordPlaceholder}
               placeholderTextColor={COLORS.secondaryFixedDim}
             />
             <Icon
-              style={styles.icon}
+              style={styles.iconEye}
               name="eye-outline"
               size={24}
               color={COLORS.secondary}
@@ -74,7 +76,7 @@ const LoginScreen = () => {
         </View>
         <Pressable style={styles.btnGoogle}>
           <Icon name="google" size={24} color={COLORS.secondary} />
-          <Text style={styles.googleText}>{'    ' + STRINGS.login.google}</Text>
+          <Text style={styles.googleText}>{STRINGS.login.google}</Text>
         </Pressable>
         <Text style={styles.continueText}>{STRINGS.login.continueAsGuest}</Text>
         <View style={styles.registerContainer}>
@@ -93,7 +95,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
-    backgroundColor: '#F6F1EF',
+    backgroundColor: COLORS.backgroundColor,
     height: DIMENSIONS.screenHeight,
     width: DIMENSIONS.screenWidth,
   },
@@ -178,7 +180,11 @@ const styles = StyleSheet.create({
   },
   passwordInput: {
     flex: 1,
+    marginHorizontal: DIMENSIONS.sm,
     fontFamily: FONTS.medium,
+  },
+  iconEye: {
+    marginHorizontal: 10,
   },
   signBtn: {
     height: 60,
@@ -186,7 +192,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: COLORS.primary,
-    marginVertical: DIMENSIONS.marginMobile,
+    marginVertical: DIMENSIONS.xl,
   },
   signinTxt: {
     fontSize: DIMENSIONS.fontBodyXlg,
@@ -218,9 +224,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: DIMENSIONS.marginMobile,
+    marginVertical: DIMENSIONS.xl,
   },
   googleText: {
+    marginLeft: DIMENSIONS.md,
     color: COLORS.onSurface,
     fontSize: DIMENSIONS.fontBodyXlg,
     fontFamily: FONTS.medium,

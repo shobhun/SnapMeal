@@ -47,6 +47,7 @@ export const COLORS = {
   // Background
   background: '#f9f9f9',
   onBackground: '#1a1c1c',
+  backgroundColor: '#F6F1EF',
 
   // Primary Fixed
   primaryFixed: '#ffdbd0',

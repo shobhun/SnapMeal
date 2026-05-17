@@ -17,5 +17,7 @@ export const STRINGS = {
     continueAsGuest: 'Continue as Guest',
     dontHaveAccount: `Don't have an account?`,
     signUpNow: 'Sign up now',
+    emailPlaceholder: 'Enter your Email id',
+    passwordPlaceholder: '••••••••',
   },
 };
