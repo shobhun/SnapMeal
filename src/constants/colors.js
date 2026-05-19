@@ -69,4 +69,6 @@ export const COLORS = {
 
   // Transparent
   transparent: 'transparent',
+
+  ripple: 'rgba(0, 0, 0, 0.1)',
 };

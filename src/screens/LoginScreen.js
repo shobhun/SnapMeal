@@ -10,8 +10,13 @@ import {
 import { DIMENSIONS, STRINGS, FONTS, COLORS } from '../constants/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ScreenWrapper from '../components/wrappers/ScreenWrapper';
+import CustomButton from '../components/common/CustomButton';
 
 const LoginScreen = () => {
+  const handleSignIn = () => {
+    console.log('handleSignIn');
+  };
+
   return (
     <ScreenWrapper
       barStyle="dark-content"
@@ -71,9 +76,12 @@ const LoginScreen = () => {
               />
             </View>
           </View>
-          <Pressable style={styles.signBtn}>
-            <Text style={styles.signinTxt}>{STRINGS.login.signin}</Text>
-          </Pressable>
+          <CustomButton
+            title={STRINGS.login.signin}
+            onPress={handleSignIn}
+            btnStyle={{ backgroundColor: COLORS.primary }}
+            txtStyle={{ color: COLORS.onSecondary }}
+          />
           <View style={styles.loginWithContainer}>
             <View style={styles.line} />
             <Text style={styles.loginWithText}>
@@ -81,14 +89,14 @@ const LoginScreen = () => {
             </Text>
             <View style={styles.line} />
           </View>
-          <Pressable style={styles.btnGoogle}>
-            <Icon
-              name="google"
-              size={DIMENSIONS.iconSize}
-              color={COLORS.secondary}
-            />
-            <Text style={styles.googleText}>{STRINGS.login.google}</Text>
-          </Pressable>
+          <CustomButton
+            title={STRINGS.login.google}
+            onPress={handleSignIn}
+            btnStyle={{ backgroundColor: COLORS.onPrimary }}
+            txtStyle={{ color: COLORS.onSurface }}
+            iconName="google"
+            iconColor={COLORS.secondary}
+          />
           <Text style={styles.continueText}>
             {STRINGS.login.continueAsGuest}
           </Text>
@@ -200,19 +208,6 @@ const styles = StyleSheet.create({
   iconEye: {
     marginHorizontal: DIMENSIONS.m,
   },
-  signBtn: {
-    height: DIMENSIONS.defaultHeight,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: DIMENSIONS.radiusInput,
-    backgroundColor: COLORS.primary,
-    marginVertical: DIMENSIONS.xl,
-  },
-  signinTxt: {
-    fontSize: DIMENSIONS.fontBodyXlg,
-    color: COLORS.onSecondary,
-    fontFamily: FONTS.medium,
-  },
   loginWithContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -228,22 +223,6 @@ const styles = StyleSheet.create({
     fontSize: DIMENSIONS.fontBodyXlg,
     color: COLORS.secondary,
     opacity: 0.7,
-    fontFamily: FONTS.medium,
-  },
-  btnGoogle: {
-    flexDirection: 'row',
-    height: DIMENSIONS.defaultHeight,
-    width: '100%',
-    backgroundColor: COLORS.onPrimary,
-    borderRadius: DIMENSIONS.radiusInput,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: DIMENSIONS.xl,
-  },
-  googleText: {
-    marginLeft: DIMENSIONS.md,
-    color: COLORS.onSurface,
-    fontSize: DIMENSIONS.fontBodyXlg,
     fontFamily: FONTS.medium,
   },
   continueText: {
