@@ -1,7 +1,8 @@
 import { StyleSheet, Image, ImageBackground, Text } from 'react-native';
-import { STRINGS, FONTS, DIMENSIONS } from '../constants';
+import { STRINGS, FONTS, DIMENSIONS, COLORS } from '../constants';
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -17,17 +18,22 @@ const SplashScreen = () => {
   }, []);
 
   return (
-    <ImageBackground
-      style={styles.containerImage}
-      source={require('../assets/images/splash_bg.png')}
+    <ScreenWrapper
+      barStyle="dark-content"
+      statusBarColor={COLORS.primaryContainer}
     >
-      <Image
-        style={styles.centerImage}
-        source={require('../assets/icons/logo.png')}
-      />
-      <Text style={styles.appnameText}>{STRINGS.common.appName}</Text>
-      <Text style={styles.appmotoText}>{STRINGS.splash.tagline}</Text>
-    </ImageBackground>
+      <ImageBackground
+        style={styles.containerImage}
+        source={require('../assets/images/splash_bg.png')}
+      >
+        <Image
+          style={styles.centerImage}
+          source={require('../assets/icons/logo.png')}
+        />
+        <Text style={styles.appnameText}>{STRINGS.common.appName}</Text>
+        <Text style={styles.appmotoText}>{STRINGS.splash.tagline}</Text>
+      </ImageBackground>
+    </ScreenWrapper>
   );
 };
 

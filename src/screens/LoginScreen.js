@@ -9,88 +9,98 @@ import {
 } from 'react-native';
 import { DIMENSIONS, STRINGS, FONTS, COLORS } from '../constants/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 
 const LoginScreen = () => {
   return (
-    <ScrollView style={styles.scrollContainer}>
-      <View style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image
-            style={styles.imgLogo}
-            source={require('../assets/icons/logo.png')}
-          />
-        </View>
-        <Text style={styles.welcomeText}>{STRINGS.login.welcome}</Text>
-        <Text style={styles.signTxt}>{STRINGS.login.signinMsg}</Text>
-        <View style={styles.emailPasswordContainer}>
-          <Text style={styles.emailText}>{STRINGS.login.email}</Text>
-          <View style={styles.emailInputContainer}>
-            <Icon
-              style={styles.icon}
-              name="email-outline"
-              size={24}
-              color={COLORS.secondary}
-            />
-            <TextInput
-              placeholder={STRINGS.login.emailPlaceholder}
-              style={styles.emailInput}
-              placeholderTextColor={COLORS.secondaryFixedDim}
+    <ScreenWrapper
+      barStyle="dark-content"
+      statusBarColor={COLORS.backgroundColor}
+    >
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.imgLogo}
+              source={require('../assets/icons/logo.png')}
             />
           </View>
-        </View>
-        <View style={styles.emailPasswordContainer}>
-          <View style={styles.passwordView}>
-            <Text style={styles.passwordText}>{STRINGS.login.password}</Text>
-            <Text style={styles.forgotPasswordText}>
-              {STRINGS.login.forgotPassword}
+          <Text style={styles.welcomeText}>{STRINGS.login.welcome}</Text>
+          <Text style={styles.signTxt}>{STRINGS.login.signinMsg}</Text>
+          <View style={styles.emailPasswordContainer}>
+            <Text style={styles.emailText}>{STRINGS.login.email}</Text>
+            <View style={styles.emailInputContainer}>
+              <Icon
+                style={styles.icon}
+                name="email-outline"
+                size={24}
+                color={COLORS.secondary}
+              />
+              <TextInput
+                placeholder={STRINGS.login.emailPlaceholder}
+                style={styles.emailInput}
+                placeholderTextColor={COLORS.secondaryFixedDim}
+              />
+            </View>
+          </View>
+          <View style={styles.emailPasswordContainer}>
+            <View style={styles.passwordView}>
+              <Text style={styles.passwordText}>{STRINGS.login.password}</Text>
+              <Text style={styles.forgotPasswordText}>
+                {STRINGS.login.forgotPassword}
+              </Text>
+            </View>
+            <View style={styles.passwordInputContainer}>
+              <Icon
+                style={styles.icon}
+                name="lock-outline"
+                size={DIMENSIONS.iconSize}
+                color={COLORS.secondary}
+              />
+              <TextInput
+                style={styles.passwordInput}
+                secureTextEntry
+                placeholder={STRINGS.login.passwordPlaceholder}
+                placeholderTextColor={COLORS.secondaryFixedDim}
+              />
+              <Icon
+                style={styles.iconEye}
+                name="eye-outline"
+                size={DIMENSIONS.iconSize}
+                color={COLORS.secondary}
+              />
+            </View>
+          </View>
+          <Pressable style={styles.signBtn}>
+            <Text style={styles.signinTxt}>{STRINGS.login.signin}</Text>
+          </Pressable>
+          <View style={styles.loginWithContainer}>
+            <View style={styles.line} />
+            <Text style={styles.loginWithText}>
+              {STRINGS.login.orLoginWith}
             </Text>
+            <View style={styles.line} />
           </View>
-          <View style={styles.passwordInputContainer}>
+          <Pressable style={styles.btnGoogle}>
             <Icon
-              style={styles.icon}
-              name="lock-outline"
+              name="google"
               size={DIMENSIONS.iconSize}
               color={COLORS.secondary}
             />
-            <TextInput
-              style={styles.passwordInput}
-              secureTextEntry
-              placeholder={STRINGS.login.passwordPlaceholder}
-              placeholderTextColor={COLORS.secondaryFixedDim}
-            />
-            <Icon
-              style={styles.iconEye}
-              name="eye-outline"
-              size={DIMENSIONS.iconSize}
-              color={COLORS.secondary}
-            />
-          </View>
-        </View>
-        <Pressable style={styles.signBtn}>
-          <Text style={styles.signinTxt}>{STRINGS.login.signin}</Text>
-        </Pressable>
-        <View style={styles.loginWithContainer}>
-          <View style={styles.line} />
-          <Text style={styles.loginWithText}>{STRINGS.login.orLoginWith}</Text>
-          <View style={styles.line} />
-        </View>
-        <Pressable style={styles.btnGoogle}>
-          <Icon
-            name="google"
-            size={DIMENSIONS.iconSize}
-            color={COLORS.secondary}
-          />
-          <Text style={styles.googleText}>{STRINGS.login.google}</Text>
-        </Pressable>
-        <Text style={styles.continueText}>{STRINGS.login.continueAsGuest}</Text>
-        <View style={styles.registerContainer}>
-          <Text style={styles.noAccountText}>
-            {STRINGS.login.dontHaveAccount}
+            <Text style={styles.googleText}>{STRINGS.login.google}</Text>
+          </Pressable>
+          <Text style={styles.continueText}>
+            {STRINGS.login.continueAsGuest}
           </Text>
-          <Text style={styles.signUpText}>{STRINGS.login.signUpNow}</Text>
+          <View style={styles.registerContainer}>
+            <Text style={styles.noAccountText}>
+              {STRINGS.login.dontHaveAccount}
+            </Text>
+            <Text style={styles.signUpText}>{STRINGS.login.signUpNow}</Text>
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </ScreenWrapper>
   );
 };
 
