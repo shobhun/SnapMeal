@@ -11,17 +11,10 @@ const CustomButton = ({
   iconColor,
 }) => {
   return (
-    <View
-      style={{
-        overflow: 'hidden',
-        btnStyle,
-        borderRadius: DIMENSIONS.radiusInput,
-      }}
-    >
+    <View style={[styles.outerWrapper, btnStyle]}>
       <Pressable
         style={({ pressed }) => [
-          styles.containerBtn,
-          btnStyle,
+          styles.innerPressable,
           pressed && styles.pressed,
         ]}
         android_ripple={{
@@ -46,16 +39,22 @@ const CustomButton = ({
 export default CustomButton;
 
 const styles = StyleSheet.create({
-  containerBtn: {
+  outerWrapper: {
+    marginVertical: DIMENSIONS.xl,
+    borderRadius: DIMENSIONS.radiusInput,
+    overflow: 'hidden',
+    backgroundColor: COLORS.primary,
+  },
+  innerPressable: {
     flexDirection: 'row',
     height: DIMENSIONS.defaultHeight,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: DIMENSIONS.radiusInput,
-    marginVertical: DIMENSIONS.xl,
+    width: '100%',
   },
   buttonTxt: {
     fontSize: DIMENSIONS.fontBodyXlg,
+    color: COLORS.onSecondary,
     fontFamily: FONTS.medium,
   },
   pressed: {
