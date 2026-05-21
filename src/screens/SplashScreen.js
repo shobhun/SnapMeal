@@ -10,10 +10,11 @@ const SplashScreen = () => {
   useEffect(() => {
     // Start Interval
     const interval = setInterval(() => {
+      // Used replace() instead of navigate() to prevent the user 
+      // from navigating back to the splash screen using the back button or gesture.
       navigation.replace('Login');
     }, 1000);
-
-    // Clear Interval
+    // Clear interval
     return () => clearInterval(interval);
   }, []);
 

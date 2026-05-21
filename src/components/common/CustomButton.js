@@ -2,6 +2,10 @@ import { View, Pressable, Text, StyleSheet } from 'react-native';
 import { DIMENSIONS, COLORS, FONTS } from '../../constants/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+/*
+ * A reusable button component that handles both text and optional icons.
+ * Uses Pressable for native ripple effects on Android.
+ */
 const CustomButton = ({
   title,
   onPress,

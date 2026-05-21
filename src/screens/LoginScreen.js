@@ -12,16 +12,23 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 import CustomButton from '../components/common/CustomButton';
 import { useState } from 'react';
+import Toast from 'react-native-toast-message';
 
 const LoginScreen = () => {
   const [password, setPassword] = useState(true);
   const [eyeName, setEyeName] = useState('eye');
 
   const handleSignIn = () => {
-    Alert.alert('handleSignIn');
+    // Show a global toast notification upon sign-in attempt
+    Toast.show({
+      visibilityTime: 2000,
+      type: 'info',
+      text1: 'Sign In Button Clicked'
+    })
   };
 
   const handlePasswordVisibility = () => {
+    // Toggles the secureTextEntry state and updates the icon
     setPassword(!password);
     setEyeName(password ? 'eye' : 'eye-off')
   };
