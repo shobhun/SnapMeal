@@ -1,6 +1,6 @@
 import {
+  Alert,
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,10 +11,19 @@ import { DIMENSIONS, STRINGS, FONTS, COLORS } from '../constants/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 import CustomButton from '../components/common/CustomButton';
+import { useState } from 'react';
 
 const LoginScreen = () => {
+  const [password, setPassword] = useState(true);
+  const [eyeName, setEyeName] = useState('eye');
+
   const handleSignIn = () => {
-    console.log('handleSignIn');
+    Alert.alert('handleSignIn');
+  };
+
+  const handlePasswordVisibility = () => {
+    setPassword(!password);
+    setEyeName(password ? 'eye' : 'eye-off')
   };
 
   return (
@@ -64,15 +73,16 @@ const LoginScreen = () => {
               />
               <TextInput
                 style={styles.passwordInput}
-                secureTextEntry
+                secureTextEntry={password}
                 placeholder={STRINGS.login.passwordPlaceholder}
                 placeholderTextColor={COLORS.secondaryFixedDim}
               />
               <Icon
                 style={styles.iconEye}
-                name="eye-outline"
+                name={eyeName}
                 size={DIMENSIONS.iconSize}
                 color={COLORS.secondary}
+                onPress={handlePasswordVisibility}
               />
             </View>
           </View>
