@@ -1,5 +1,4 @@
 import {
-  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -14,7 +13,7 @@ import CustomButton from '../components/common/CustomButton';
 import { useState } from 'react';
 import Toast from 'react-native-toast-message';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState(true);
   const [eyeName, setEyeName] = useState('eye');
 
@@ -32,6 +31,10 @@ const LoginScreen = () => {
     setPassword(!password);
     setEyeName(password ? 'eye' : 'eye-off')
   };
+
+  const handleSignupNavigation = () => {
+    navigation.navigate('SignUp');
+  }
 
   return (
     <ScreenWrapper
@@ -121,7 +124,7 @@ const LoginScreen = () => {
             <Text style={styles.noAccountText}>
               {STRINGS.login.dontHaveAccount}
             </Text>
-            <Text style={styles.signUpText}>{STRINGS.login.signUpNow}</Text>
+            <Text style={styles.signUpText} onPress={handleSignupNavigation}>{STRINGS.login.signUpNow}</Text>
           </View>
         </View>
       </ScrollView>

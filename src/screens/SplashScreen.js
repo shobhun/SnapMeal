@@ -1,12 +1,9 @@
 import { StyleSheet, Image, ImageBackground, Text } from 'react-native';
 import { STRINGS, FONTS, DIMENSIONS, COLORS } from '../constants';
 import { useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 
-const SplashScreen = () => {
-  const navigation = useNavigation();
-
+const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     // Start Interval
     const interval = setInterval(() => {
