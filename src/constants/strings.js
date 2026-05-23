@@ -20,4 +20,18 @@ export const STRINGS = {
     emailPlaceholder: 'Enter your Email id',
     passwordPlaceholder: '••••••••',
   },
+  signup: {
+    foodieFlow: 'FoodieFlow',
+    joinCommunity: 'Join the community of food lovers',
+    uploadPhoto: 'Upload Photo',
+    fullName: 'Full Name',
+    emailAddress: 'Email Address',
+    phone: 'Phone Number',
+    password: 'Password',
+    createAccount: 'Create Account',
+    alreadyHaveAccount: 'Already have an account? ',
+    signIn: 'Sign In',
+    agreeTC:
+      'By signing up, you agree to our Terms of Service and Privacy Policy',
+  },
 };
