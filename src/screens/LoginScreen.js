@@ -4,14 +4,18 @@ import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 import CustomButton from '../components/common/CustomButton';
 import CustomTextInput from '../components/common/CustomTextInput';
 import Toast from 'react-native-toast-message';
+import { useState } from 'react';
 
 const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleSignIn = () => {
     // Show a global toast notification upon sign-in attempt
     Toast.show({
       visibilityTime: 2000,
       type: 'info',
-      text1: 'Sign In Button Clicked',
+      text1: `Email : ${email} and Password : ${password}`,
     });
   };
 
@@ -39,12 +43,16 @@ const LoginScreen = ({ navigation }) => {
             type={STRINGS.common.inputTypeNormal}
             placeholder={STRINGS.login.emailPlaceholder}
             icon={'email-outline'}
+            onTextChange={setEmail}
+            value={email}
           />
           <CustomTextInput
             title={STRINGS.signup.password}
             type={STRINGS.common.inputTypePassword}
             placeholder={STRINGS.login.passwordPlaceholder}
             icon={'lock-outline'}
+            onTextChange={setPassword}
+            value={password}
           />
           <CustomButton
             title={STRINGS.login.signin}

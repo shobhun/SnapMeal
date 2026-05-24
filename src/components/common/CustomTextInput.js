@@ -4,14 +4,21 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS, STRINGS, DIMENSIONS, FONTS } from '../../constants';
 import { useState } from 'react';
 
-const CustomTextInput = ({ title, type, placeholder, icon }) => {
-  const [password, setPassword] = useState(true);
+const CustomTextInput = ({
+  title,
+  type,
+  placeholder,
+  icon,
+  onTextChange,
+  value,
+}) => {
+  const [isSecure, setIsSecure] = useState(true);
   const [eyeName, setEyeName] = useState('eye');
 
   // Toggles the secureTextEntry state and updates the icon
   const handlePasswordVisibility = () => {
-    setPassword(!password);
-    setEyeName(password ? 'eye' : 'eye-off');
+    setIsSecure(!isSecure);
+    setEyeName(isSecure ? 'eye' : 'eye-off');
   };
 
   return (
@@ -35,10 +42,12 @@ const CustomTextInput = ({ title, type, placeholder, icon }) => {
         <TextInput
           style={styles.textInput}
           secureTextEntry={
-            type === STRINGS.common.inputTypePassword ? password : false
+            type === STRINGS.common.inputTypePassword ? isSecure : false
           }
           placeholder={placeholder}
           placeholderTextColor={COLORS.secondaryFixedDim}
+          onChangeText={onTextChange}
+          value={value}
         />
         {type === STRINGS.common.inputTypePassword && (
           <Icon
