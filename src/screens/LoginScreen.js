@@ -1,40 +1,23 @@
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { DIMENSIONS, STRINGS, FONTS, COLORS } from '../constants/index';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ScreenWrapper from '../components/wrappers/ScreenWrapper';
 import CustomButton from '../components/common/CustomButton';
-import { useState } from 'react';
+import CustomTextInput from '../components/common/CustomTextInput';
 import Toast from 'react-native-toast-message';
 
 const LoginScreen = ({ navigation }) => {
-  const [password, setPassword] = useState(true);
-  const [eyeName, setEyeName] = useState('eye');
-
   const handleSignIn = () => {
     // Show a global toast notification upon sign-in attempt
     Toast.show({
       visibilityTime: 2000,
       type: 'info',
-      text1: 'Sign In Button Clicked'
-    })
-  };
-
-  const handlePasswordVisibility = () => {
-    // Toggles the secureTextEntry state and updates the icon
-    setPassword(!password);
-    setEyeName(password ? 'eye' : 'eye-off')
+      text1: 'Sign In Button Clicked',
+    });
   };
 
   const handleSignupNavigation = () => {
     navigation.navigate('SignUp');
-  }
+  };
 
   return (
     <ScreenWrapper
@@ -51,51 +34,18 @@ const LoginScreen = ({ navigation }) => {
           </View>
           <Text style={styles.welcomeText}>{STRINGS.login.welcome}</Text>
           <Text style={styles.signTxt}>{STRINGS.login.signinMsg}</Text>
-          <View style={styles.emailPasswordContainer}>
-            <Text style={styles.emailText}>{STRINGS.login.email}</Text>
-            <View style={styles.emailInputContainer}>
-              <Icon
-                style={styles.icon}
-                name="email-outline"
-                size={24}
-                color={COLORS.secondary}
-              />
-              <TextInput
-                placeholder={STRINGS.login.emailPlaceholder}
-                style={styles.emailInput}
-                placeholderTextColor={COLORS.secondaryFixedDim}
-              />
-            </View>
-          </View>
-          <View style={styles.emailPasswordContainer}>
-            <View style={styles.passwordView}>
-              <Text style={styles.passwordText}>{STRINGS.login.password}</Text>
-              <Text style={styles.forgotPasswordText}>
-                {STRINGS.login.forgotPassword}
-              </Text>
-            </View>
-            <View style={styles.passwordInputContainer}>
-              <Icon
-                style={styles.icon}
-                name="lock-outline"
-                size={DIMENSIONS.iconSize}
-                color={COLORS.secondary}
-              />
-              <TextInput
-                style={styles.passwordInput}
-                secureTextEntry={password}
-                placeholder={STRINGS.login.passwordPlaceholder}
-                placeholderTextColor={COLORS.secondaryFixedDim}
-              />
-              <Icon
-                style={styles.iconEye}
-                name={eyeName}
-                size={DIMENSIONS.iconSize}
-                color={COLORS.secondary}
-                onPress={handlePasswordVisibility}
-              />
-            </View>
-          </View>
+          <CustomTextInput
+            title={STRINGS.signup.emailAddress}
+            type={STRINGS.common.inputTypeNormal}
+            placeholder={STRINGS.login.emailPlaceholder}
+            icon={'email-outline'}
+          />
+          <CustomTextInput
+            title={STRINGS.signup.password}
+            type={STRINGS.common.inputTypePassword}
+            placeholder={STRINGS.login.passwordPlaceholder}
+            icon={'lock-outline'}
+          />
           <CustomButton
             title={STRINGS.login.signin}
             onPress={handleSignIn}
@@ -124,7 +74,9 @@ const LoginScreen = ({ navigation }) => {
             <Text style={styles.noAccountText}>
               {STRINGS.login.dontHaveAccount}
             </Text>
-            <Text style={styles.signUpText} onPress={handleSignupNavigation}>{STRINGS.login.signUpNow}</Text>
+            <Text style={styles.signUpText} onPress={handleSignupNavigation}>
+              {STRINGS.login.signUpNow}
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -163,70 +115,6 @@ const styles = StyleSheet.create({
     marginTop: DIMENSIONS.base,
     color: COLORS.secondary,
     textAlign: 'center',
-  },
-  emailPasswordContainer: {
-    marginTop: DIMENSIONS.marginMobile,
-    alignItems: 'flex-start',
-  },
-  emailText: {
-    fontSize: DIMENSIONS.fontBodyXlg,
-    fontFamily: FONTS.medium,
-    marginVertical: DIMENSIONS.md,
-    color: COLORS.onSurfaceVariant,
-  },
-  emailInputContainer: {
-    height: DIMENSIONS.defaultHeight,
-    width: '100%',
-    borderWidth: 1,
-    borderColor: COLORS.secondaryContainer,
-    flexDirection: 'row',
-    backgroundColor: COLORS.surfaceContainerLow,
-    borderRadius: DIMENSIONS.radiusInput,
-    alignItems: 'center',
-  },
-  icon: {
-    marginLeft: DIMENSIONS.m,
-  },
-  emailInput: {
-    flex: 1,
-    fontSize: DIMENSIONS.fontBodyXlg,
-    fontFamily: FONTS.medium,
-    marginHorizontal: DIMENSIONS.sm,
-  },
-  passwordView: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  passwordText: {
-    fontSize: DIMENSIONS.fontBodyXlg,
-    fontFamily: FONTS.medium,
-    marginVertical: DIMENSIONS.md,
-    color: COLORS.onSurfaceVariant,
-  },
-  forgotPasswordText: {
-    fontSize: DIMENSIONS.fontBodyXlg,
-    fontFamily: FONTS.medium,
-    marginVertical: DIMENSIONS.md,
-    color: COLORS.primary,
-  },
-  passwordInputContainer: {
-    height: DIMENSIONS.defaultHeight,
-    width: '100%',
-    borderWidth: 1,
-    borderColor: COLORS.secondaryContainer,
-    flexDirection: 'row',
-    backgroundColor: COLORS.surfaceContainerLow,
-    borderRadius: DIMENSIONS.radiusInput,
-    alignItems: 'center',
-  },
-  passwordInput: {
-    flex: 1,
-    marginHorizontal: DIMENSIONS.sm,
-    fontFamily: FONTS.medium,
-  },
-  iconEye: {
-    marginHorizontal: DIMENSIONS.m,
   },
   loginWithContainer: {
     flexDirection: 'row',

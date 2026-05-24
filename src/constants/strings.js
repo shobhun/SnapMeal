@@ -1,6 +1,8 @@
 export const STRINGS = {
   common: {
     appName: 'SnapMeal',
+    inputTypeNormal: 'normal',
+    inputTypePassword: 'password',
   },
   splash: {
     tagline: 'CRAVINGS SOLVED. FAST.',
