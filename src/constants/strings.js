@@ -27,7 +27,7 @@ export const STRINGS = {
     joinCommunity: 'Join the community of food lovers',
     uploadPhoto: 'Upload Photo',
     fullName: 'Full Name',
-    emailAddress: 'Email Address',
+    email: 'Email Address',
     phone: 'Phone Number',
     password: 'Password',
     createAccount: 'Create Account',

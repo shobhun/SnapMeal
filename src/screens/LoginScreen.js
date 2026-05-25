@@ -39,7 +39,7 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.welcomeText}>{STRINGS.login.welcome}</Text>
           <Text style={styles.signTxt}>{STRINGS.login.signinMsg}</Text>
           <CustomTextInput
-            title={STRINGS.signup.emailAddress}
+            title={STRINGS.signup.email}
             type={STRINGS.common.inputTypeNormal}
             placeholder={STRINGS.login.emailPlaceholder}
             icon={'email-outline'}
