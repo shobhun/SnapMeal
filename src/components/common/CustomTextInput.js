@@ -11,6 +11,7 @@ const CustomTextInput = ({
   icon,
   onTextChange,
   value,
+  keyboardType,
 }) => {
   const [isSecure, setIsSecure] = useState(true);
   const [eyeName, setEyeName] = useState('eye');
@@ -48,6 +49,7 @@ const CustomTextInput = ({
           placeholderTextColor={COLORS.secondaryFixedDim}
           onChangeText={onTextChange}
           value={value}
+          keyboardType={keyboardType}
         />
         {type === STRINGS.common.inputTypePassword && (
           <Icon

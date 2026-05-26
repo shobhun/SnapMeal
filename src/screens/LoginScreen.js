@@ -45,6 +45,7 @@ const LoginScreen = ({ navigation }) => {
             icon={'email-outline'}
             onTextChange={setEmail}
             value={email}
+            keyboardType="default"
           />
           <CustomTextInput
             title={STRINGS.signup.password}
@@ -53,6 +54,7 @@ const LoginScreen = ({ navigation }) => {
             icon={'lock-outline'}
             onTextChange={setPassword}
             value={password}
+            keyboardType="default"
           />
           <CustomButton
             title={STRINGS.login.signin}

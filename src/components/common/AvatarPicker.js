@@ -2,15 +2,13 @@ import { StyleSheet, View } from 'react-native';
 import { COLORS } from '../../constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const AvtarPicker = () => {
+const AvtarPicker = ({ handleEditProfile }) => {
   return (
     <View style={styles.photoContainer}>
-      {/* Inner grey circle with camera icon */}
       <View style={styles.innerCircle}>
         <Icon name="camera-plus-outline" size={40} color={COLORS.secondary} />
       </View>
-      {/* Edit button — positioned absolute at bottom-right */}
-      <View style={styles.editButton}>
+      <View style={styles.editButton} onTouchEnd={handleEditProfile}>
         <Icon name="pencil" size={16} color="white" />
       </View>
     </View>

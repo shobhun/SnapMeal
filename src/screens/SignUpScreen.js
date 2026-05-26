@@ -4,18 +4,32 @@ import { COLORS, STRINGS, DIMENSIONS, FONTS } from '../constants';
 import CustomTextInput from '../components/common/CustomTextInput';
 import CustomButton from '../components/common/CustomButton';
 import AvtarPicker from '../components/common/AvatarPicker';
+import BottomSheet from '../components/common/BottomSheet';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { useState } from 'react';
 
 const SignUpScreen = ({ navigation }) => {
-  const handleSignUp = () => {
-    Toast.show({
-      visibilityTime: 2000,
-      type: 'info',
-      text1: `Email : ${email} and Password : ${password}`,
-    });
-  };
+  const [bottomSheetVisibilty, setBottomSheetVisibilty] = useState(false);
+  const handleSignUp = () => {};
 
   const handleSigninNavigation = () => {
     navigation.popToTop();
+  };
+
+  const showBottomSheet = () => {
+    setBottomSheetVisibilty(!bottomSheetVisibilty);
+  };
+
+  const openCamera = async () => {
+    launchCamera({ mediaType: 'photo' }, res =>
+      handleImageResponse(res, onImageSelected),
+    );
+  };
+
+  const openGallery = async () => {
+    launchImageLibrary({ mediaType: 'photo' }, res =>
+      handleImageResponse(res, onImageSelected),
+    );
   };
 
   return (
@@ -27,7 +41,7 @@ const SignUpScreen = ({ navigation }) => {
         <Text style={styles.headerText}>{STRINGS.signup.foodieFlow}</Text>
         <Text style={styles.commonText}>{STRINGS.signup.joinCommunity}</Text>
         <View style={styles.container}>
-          <AvtarPicker />
+          <AvtarPicker handleEditProfile={showBottomSheet} />
           <Text style={styles.commonText}>{STRINGS.signup.uploadPhoto}</Text>
           <CustomTextInput
             title={STRINGS.signup.fullName}
@@ -36,6 +50,7 @@ const SignUpScreen = ({ navigation }) => {
             icon={'account-outline'}
             //onTextChange={setEmail}
             //value={email}
+            keyboardType="default"
           />
           <CustomTextInput
             title={STRINGS.signup.email}
@@ -44,6 +59,7 @@ const SignUpScreen = ({ navigation }) => {
             icon={'email-outline'}
             //onTextChange={setEmail}
             //value={email}
+            keyboardType="default"
           />
           <CustomTextInput
             title={STRINGS.signup.phone}
@@ -52,6 +68,7 @@ const SignUpScreen = ({ navigation }) => {
             icon={'phone-outline'}
             //onTextChange={setEmail}
             //value={email}
+            keyboardType="phone-pad"
           />
           <CustomTextInput
             title={STRINGS.signup.password}
@@ -60,6 +77,7 @@ const SignUpScreen = ({ navigation }) => {
             icon={'lock-outline'}
             //onTextChange={setEmail}
             //value={email}
+            keyboardType="default"
           />
           <CustomButton
             title={STRINGS.signup.createAccount}
@@ -85,6 +103,12 @@ const SignUpScreen = ({ navigation }) => {
           {STRINGS.signup.agreeTC}
         </Text>
       </ScrollView>
+      <BottomSheet
+        showSheet={bottomSheetVisibilty}
+        setSheetVisibilty={setBottomSheetVisibilty}
+        onCameraPress={openCamera}
+        onGalleryPress={openGallery}
+      />
     </ScreenWrapper>
   );
 };
