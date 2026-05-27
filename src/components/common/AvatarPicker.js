@@ -1,12 +1,19 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { COLORS } from '../../constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const AvtarPicker = ({ handleEditProfile }) => {
+const AvtarPicker = ({ handleEditProfile, imgSrc }) => {
   return (
     <View style={styles.photoContainer}>
       <View style={styles.innerCircle}>
-        <Icon name="camera-plus-outline" size={40} color={COLORS.secondary} />
+        <Image
+          style={styles.avtarImage}
+          source={
+            imgSrc == ''
+              ? require('../../assets/images/default_avatar.png')
+              : { uri: `data:image/jpeg;base64,${imgSrc}` }
+          }
+        />
       </View>
       <View style={styles.editButton} onTouchEnd={handleEditProfile}>
         <Icon name="pencil" size={16} color="white" />
@@ -21,10 +28,10 @@ const styles = StyleSheet.create({
   photoContainer: {
     width: 120,
     height: 120,
-    borderRadius: 60, // ← Half of width/height = perfect circle
+    borderRadius: 60,
     borderWidth: 2,
     borderColor: COLORS.primary,
-    borderStyle: 'dashed', // ← May look broken on Android
+    borderStyle: 'dashed',
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
@@ -37,8 +44,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  avtarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
   editButton: {
-    position: 'absolute', // ← Key! Floats on top of the circle
+    position: 'absolute',
     bottom: 0,
     right: 0,
     width: 30,

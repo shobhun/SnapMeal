@@ -10,6 +10,8 @@ import { useState } from 'react';
 
 const SignUpScreen = ({ navigation }) => {
   const [bottomSheetVisibilty, setBottomSheetVisibilty] = useState(false);
+  const [avtar, setAvtar] = useState('');
+
   const handleSignUp = () => {};
 
   const handleSigninNavigation = () => {
@@ -20,15 +22,23 @@ const SignUpScreen = ({ navigation }) => {
     setBottomSheetVisibilty(!bottomSheetVisibilty);
   };
 
+  const handleImageResponse = res => {
+    console.log(`res: ${res}`);
+    showBottomSheet();
+    setAvtar(res.assets[0].base64);
+  };
+
   const openCamera = async () => {
-    launchCamera({ mediaType: 'photo' }, res =>
-      handleImageResponse(res, onImageSelected),
+    launchCamera(
+      { mediaType: 'photo', includeBase64: true, quality: 0.6 },
+      res => handleImageResponse(res),
     );
   };
 
   const openGallery = async () => {
-    launchImageLibrary({ mediaType: 'photo' }, res =>
-      handleImageResponse(res, onImageSelected),
+    launchImageLibrary(
+      { mediaType: 'photo', includeBase64: true, quality: 0.6 },
+      res => handleImageResponse(res),
     );
   };
 
@@ -41,7 +51,7 @@ const SignUpScreen = ({ navigation }) => {
         <Text style={styles.headerText}>{STRINGS.signup.foodieFlow}</Text>
         <Text style={styles.commonText}>{STRINGS.signup.joinCommunity}</Text>
         <View style={styles.container}>
-          <AvtarPicker handleEditProfile={showBottomSheet} />
+          <AvtarPicker handleEditProfile={showBottomSheet} imgSrc={avtar} />
           <Text style={styles.commonText}>{STRINGS.signup.uploadPhoto}</Text>
           <CustomTextInput
             title={STRINGS.signup.fullName}
