@@ -7,27 +7,39 @@ import AvtarPicker from '../components/common/AvatarPicker';
 import BottomSheet from '../components/common/BottomSheet';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { useState } from 'react';
+import { signUpSchema } from '../utils/validations';
+import Toast from 'react-native-toast-message';
 
 const SignUpScreen = ({ navigation }) => {
   const [bottomSheetVisibilty, setBottomSheetVisibilty] = useState(false);
   const [avtar, setAvtar] = useState('');
 
-  const handleSignUp = () => {};
+  // Form Field State
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
 
+  // State of error handling
+  const [errors, setErrors] = useState({});
+
+  // Handle navigation back to Login Screen
   const handleSigninNavigation = () => {
     navigation.popToTop();
   };
 
+  // Handle the visibility of bottom sheet
   const showBottomSheet = () => {
     setBottomSheetVisibilty(!bottomSheetVisibilty);
   };
 
+  // Handle setting of image to the Avtar Picker custom component
   const handleImageResponse = res => {
-    console.log(`res: ${res}`);
     showBottomSheet();
     setAvtar(res.assets[0].base64);
   };
 
+  // Handle open Camera action
   const openCamera = async () => {
     launchCamera(
       { mediaType: 'photo', includeBase64: true, quality: 0.6 },
@@ -35,11 +47,56 @@ const SignUpScreen = ({ navigation }) => {
     );
   };
 
+  // Handle open Gallery action
   const openGallery = async () => {
     launchImageLibrary(
       { mediaType: 'photo', includeBase64: true, quality: 0.6 },
       res => handleImageResponse(res),
     );
+  };
+
+  // Validate the input feild using zod
+  const validateField = (field, value) => {
+    const result = signUpSchema.shape[field].safeParse(value);
+    console.log(`result is ${result}`);
+
+    if (!result.success) {
+      // Invalid - set the error message for particular feild only
+      setErrors(prev => ({ ...prev, [field]: result.error.errors[0].message }));
+      Toast.show({
+        visibilityTime: 3000,
+        type: 'error',
+        text1: `${result.error.errors[0].message}`,
+      });
+    } else {
+      // Valid clear the message for the feild
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  //Validation on Click of Create Account
+  // Handle the new userupload
+  const validateOnSubmit = () => {
+    const result = signUpSchema.safeParse({ fullName, email, phone, password });
+
+    if (result.success) {
+      // All valid
+    } else {
+      // Collect and put them in error state
+      const newErrors = {};
+      result.error.errors.forEach(err => {
+        newErrors[err.path[0]] = err.message;
+      });
+      setErrors(newErrors); //All Invalid field will be saved in a state
+
+      const firstErrorMessage = Object.values(newErrors)[0];
+
+      Toast.show({
+        visibilityTime: 3000,
+        type: 'error',
+        text1: firstErrorMessage, // e.g., "Full name is required"
+      });
+    }
   };
 
   return (
@@ -58,40 +115,44 @@ const SignUpScreen = ({ navigation }) => {
             type={STRINGS.common.inputTypeNormal}
             placeholder={STRINGS.signup.fullName}
             icon={'account-outline'}
-            //onTextChange={setEmail}
-            //value={email}
+            onTextChange={setFullName}
+            value={fullName}
             keyboardType="default"
+            onBlur={() => validateField('fullName', fullName)}
           />
           <CustomTextInput
             title={STRINGS.signup.email}
             type={STRINGS.common.inputTypeNormal}
             placeholder={STRINGS.signup.email}
             icon={'email-outline'}
-            //onTextChange={setEmail}
-            //value={email}
+            onTextChange={setEmail}
+            value={email}
             keyboardType="default"
+            onBlur={() => validateField('email', email)}
           />
           <CustomTextInput
             title={STRINGS.signup.phone}
             type={STRINGS.common.inputTypeNormal}
             placeholder={STRINGS.signup.phone}
             icon={'phone-outline'}
-            //onTextChange={setEmail}
-            //value={email}
+            onTextChange={setPhone}
+            value={phone}
             keyboardType="phone-pad"
+            onBlur={() => validateField('phone', phone)}
           />
           <CustomTextInput
             title={STRINGS.signup.password}
             type={STRINGS.common.inputTypePassword}
             placeholder={STRINGS.login.passwordPlaceholder}
             icon={'lock-outline'}
-            //onTextChange={setEmail}
-            //value={email}
+            onTextChange={setPassword}
+            value={password}
             keyboardType="default"
+            onBlur={() => validateField('password', password)}
           />
           <CustomButton
             title={STRINGS.signup.createAccount}
-            onPress={handleSignUp}
+            onPress={validateOnSubmit}
             btnStyle={{ backgroundColor: COLORS.primary }}
             txtStyle={{ color: COLORS.onSecondary }}
           />
