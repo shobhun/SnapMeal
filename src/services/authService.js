@@ -1,8 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
+import Config from 'react-native-config';
 
-const supabase = createClient(
-  'https://kmisizbukwktqgronokf.supabase.co',
-  'sb_publishable_hT0XwKQxR91GZfikpSolFQ_7HlQ7TTq',
-);
+const supabase = createClient(Config.SUPABASE_URL, Config.SUPABASE_ANON_KEY);
 
 export default supabase;
